@@ -8,6 +8,7 @@ from chip_tracker.memory import load_snapshots, previous_month
 from chip_tracker.publisher import publish
 from chip_tracker.reports import (
     sync_static_reports,
+    write_analysis_report,
     write_daily_report,
     write_monthly_report,
     write_weekly_report,
@@ -22,16 +23,10 @@ def run_pipeline(
     *,
     dashboard_path: Path | None = None,
 ) -> dict:
-    run_calendar_reports(root, target_date)
     snapshot = build_snapshot(provider, target_date)
     payload = publish(root, snapshot, dashboard_path=dashboard_path)
     write_daily_report(root, snapshot)
     sync_static_reports(root)
-    history = load_snapshots(root / "data" / "observations")
-    same_week = [
-        item for item in history
-        if item.data_date.isocalendar()[:2] == target_date.isocalendar()[:2]
-    ]
     return payload
 
 
@@ -48,5 +43,12 @@ def run_calendar_reports(root: Path, target_date: date) -> list[Path]:
         ]
         if same_week:
             outputs.append(write_weekly_report(root, same_week))
+    if target_date.weekday() == 6:
+        same_week = [
+            item for item in history
+            if item.data_date.isocalendar()[:2] == target_date.isocalendar()[:2]
+        ]
+        if same_week:
+            outputs.append(write_analysis_report(root, same_week))
     sync_static_reports(root)
     return outputs

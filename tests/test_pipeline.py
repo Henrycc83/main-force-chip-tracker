@@ -98,6 +98,26 @@ def test_month_first_report_does_not_require_same_day_market_data(tmp_path, fixt
     assert "partial" in outputs[0].read_text(encoding="utf-8")
 
 
+def test_sunday_analysis_has_evidence_countercase_and_conditional_strategy(
+    tmp_path, fixture_file, target_date
+):
+    base = build_snapshot(FixtureProvider(fixture_file), target_date)
+    for offset in (0, 1, 2):
+        day = target_date + timedelta(days=offset)
+        publish(tmp_path, DailySnapshot(
+            day,
+            tuple(_dated(row, day) for row in base.listed),
+            tuple(_dated(row, day) for row in base.otc),
+            base.generated_at, base.source_health,
+        ))
+    outputs = run_calendar_reports(tmp_path, date(2026, 9, 6))
+    report = next(path for path in outputs if path.parent.name == "analysis")
+    text = report.read_text(encoding="utf-8")
+    for required in ("反證", "3 個驗證指標", "試單觸發", "失效／停損", "不交易情境", "ETF／其他資金流附錄"):
+        assert required in text
+    assert (tmp_path / "reports/main-force-chips/analysis-latest.md").read_text(encoding="utf-8") == text
+
+
 def _dated(row, day):
     values = row.to_dict()
     values["ranking_date"] = values["quote_date"] = day.isoformat()
