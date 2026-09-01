@@ -53,6 +53,7 @@ for (const id of [
 
 assert.ok(html.includes("class=\"skip-link\""), "skip link is required");
 assert.ok(html.includes("aria-live"), "live-region feedback is required");
+assert.ok(html.includes("app.js?v="), "production script must be cache-busted after UI releases");
 assert.ok(css.includes("prefers-reduced-motion"), "reduced-motion support is required");
 assert.ok(css.includes("focus-visible"), "visible keyboard focus is required");
 assert.ok(css.includes("@media (max-width: 700px)"), "mobile layout is required");
