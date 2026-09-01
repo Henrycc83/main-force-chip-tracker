@@ -27,6 +27,10 @@ def check_page(browser, *, width: int, height: int, name: str) -> None:
     rendered_date = page.locator("#data-date").inner_text()
     assert re.search(r"2026\D+0?9\D+0?1", rendered_date), rendered_date
     assert page.locator("#latest-table tbody tr").count() == 30
+    evidence_rows = page.locator("#latest-table .row-evidence")
+    assert evidence_rows.count() == 30
+    assert evidence_rows.first.is_visible()
+    assert "分母" in evidence_rows.first.inner_text()
     assert page.locator("#overall-status").inner_text().strip() == STATUS_TEXT[PAYLOAD["status"]]
     assert not console_errors, console_errors
     assert page.evaluate("document.documentElement.scrollWidth <= window.innerWidth")
@@ -47,4 +51,4 @@ with sync_playwright() as playwright:
     check_page(browser, width=390, height=844, name="mobile")
     browser.close()
 
-print("Visual smoke checks passed: desktop/mobile layout, 30 rows, status, console and report links.")
+print("Visual smoke checks passed: desktop/mobile layout, 30 rows, visible evidence, status, console and report links.")
