@@ -7,7 +7,7 @@
     <meta name="color-scheme" content="light">
     <title>主力籌碼觀測站</title>
     <link rel="stylesheet" href="./styles.css">
-    <script src="./app.js?v=20260901-hide-denominator" defer></script>
+    <script src="./app.js?v=20260901-hide-audit-labels" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">跳到主要內容</a>
@@ -25,7 +25,6 @@
           <p class="seal__label">最新確認交易日</p>
           <p class="seal__date" id="data-date">讀取中</p>
           <div class="seal__status-row">
-            <span class="status-chip" id="overall-status">載入資料</span>
             <span id="qa-status">QA —</span>
           </div>
           <p class="seal__time">網站更新：<time id="generated-at">—</time></p>
@@ -47,7 +46,6 @@
           <p id="quality-summary">正在檢查資料完整性…</p>
         </div>
         <div class="metric-grid" id="quality-metrics" aria-live="polite"></div>
-        <div class="source-health" id="source-health"></div>
       </section>
 
       <section class="section-block" aria-labelledby="latest-title">
@@ -128,7 +126,6 @@
                 <th scope="col" class="numeric">觀察淨買超</th>
                 <th scope="col" class="numeric">加權買超比</th>
                 <th scope="col">最新狀態</th>
-                <th scope="col">證據</th>
               </tr>
             </thead>
             <tbody></tbody>

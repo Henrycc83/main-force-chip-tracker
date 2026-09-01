@@ -24,13 +24,6 @@ const labels = {
   capital_percent: "股本占比",
 };
 
-const statusText = {
-  confirmed: "已確認",
-  partial: "部分或代理",
-  no_new_data: "無新交易資料",
-  unavailable: "不可用",
-};
-
 const typeText = {
   ordinary_stock: "普通股",
   etf: "ETF",
@@ -130,9 +123,6 @@ function renderDashboard(payload) {
   document.querySelector("#data-date").textContent = payload.data_date ? displayDate(payload.data_date) : "尚未確認";
   document.querySelector("#generated-at").textContent = displayDateTime(payload.generated_at);
 
-  const overall = document.querySelector("#overall-status");
-  overall.textContent = statusText[payload.status] || payload.status;
-  overall.className = `status-chip ${payload.status === "confirmed" ? "" : payload.status === "partial" ? "partial" : "unavailable"}`;
   const qaPassed = payload.quality?.latest_qa_result?.passed === true;
   document.querySelector("#qa-status").textContent = qaPassed ? "QA 通過" : "QA 未通過";
 
@@ -171,16 +161,6 @@ function renderQuality(payload) {
     ? "獨立驗證通過，頁面可發布。"
     : "最新驗證未通過。請查看來源狀態與缺漏。";
 
-  const healthHost = document.querySelector("#source-health");
-  const health = quality.source_health || {};
-  const items = Array.isArray(health)
-    ? health.map((item) => [item.source || item.name, item.status])
-    : Object.entries(health);
-  healthHost.replaceChildren(...items.map(([source, status]) => {
-    const badge = el("span", `badge ${statusClass(status)}`);
-    badge.textContent = `${source} · ${statusText[status] || status}`;
-    return badge;
-  }));
 }
 
 function renderLatest() {
@@ -205,15 +185,11 @@ function renderLatest() {
 function createLatestRow(row) {
   const tr = document.createElement("tr");
   const market = row.market_group === "listed" ? "上市" : "上櫃";
-  const nameCell = textValue(row.name, "name-cell");
-  const evidence = el("span", `row-evidence ${statusClass(row.evidence_status)}`);
-  evidence.textContent = statusText[row.evidence_status] || row.evidence_status || "不可用";
-  nameCell.append(evidence);
   const values = [
     badgeValue(market, "market-tag"),
     textValue(row.rank),
     textValue(row.code, "code-cell"),
-    nameCell,
+    textValue(row.name, "name-cell"),
     textValue(typeText[row.security_type] || row.security_type || "不可用"),
     numberValue(row.close, 2),
     percentValue(row.change_percent, 2, true),
@@ -229,7 +205,6 @@ function createLatestRow(row) {
     if ([5, 6, 7, 8, 9, 11].includes(index)) cell.classList.add("numeric");
     tr.append(cell);
   });
-  tr.title = `排行證據：${statusText[row.evidence_status] || row.evidence_status || "不可用"}`;
   return tr;
 }
 
@@ -246,9 +221,8 @@ function renderMemory(rows) {
       signedNumberValue(pick(row, "observed_net_buy_lots", "net_buy_lots", "observed_buy_lots")),
       percentValue(pick(row, "weighted_buy_percent", "weighted_buy_ratio", "buy_volume_percent"), 2),
       textValue(flowStateText[row.buy_sell_state] || value(pick(row, "latest_state", "status"), "不可用")),
-      badgeValue(statusText[row.evidence_status] || row.evidence_status || "不可用", `badge ${statusClass(row.evidence_status)}`),
     ];
-    ["代碼／名稱", "前15日數", "最長連續", "觀察淨買超", "加權買超比", "最新狀態", "證據"].forEach((label, index) => {
+    ["代碼／名稱", "前15日數", "最長連續", "觀察淨買超", "加權買超比", "最新狀態"].forEach((label, index) => {
       cells[index].dataset.label = label;
       if ([1, 2, 3, 4].includes(index)) cells[index].classList.add("numeric");
       tr.append(cells[index]);
@@ -271,7 +245,6 @@ function renderMonthly(monthly) {
     ["已觀察交易日", suffix(metadata.trading_days_observed ?? metadata.trading_days, " 日")],
     ["普通股入榜", suffix(ordinaryRows.length, " 檔")],
     ["ETF／其他資金流", suffix(fundRows.length, " 檔")],
-    ["資料完整度", statusText[metadata.coverage_status] || value(metadata.coverage_status, "不可用")],
   ];
   const factHost = document.querySelector("#monthly-facts");
   factHost.replaceChildren(...facts.map(([term, description]) => {
@@ -328,9 +301,6 @@ function renderReportLinks(links) {
 
 function renderFatalState() {
   document.querySelector("#data-date").textContent = "無法載入";
-  const overall = document.querySelector("#overall-status");
-  overall.textContent = "不可用";
-  overall.className = "status-chip unavailable";
   document.querySelector("#qa-status").textContent = "QA 未執行";
   document.querySelector("#quality-summary").textContent = "資料檔無法讀取，未顯示任何舊數據。";
   document.querySelector("#quality-metrics").replaceChildren();
@@ -385,12 +355,6 @@ function matchesSecurityType(type, filter) {
   const funds = new Set(["etf", "bond_etf", "leveraged_etf", "inverse_etf", "active_etf", "fund"]);
   if (filter === "fund") return funds.has(type);
   return type !== "ordinary_stock" && !funds.has(type);
-}
-
-function statusClass(status) {
-  if (status === "confirmed") return "confirmed";
-  if (status === "partial" || status === "proxy") return "partial";
-  return "unavailable";
 }
 
 function marketText(market) {

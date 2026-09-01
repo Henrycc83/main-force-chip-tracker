@@ -57,8 +57,10 @@ assert.ok(html.includes("app.js?v="), "production script must be cache-busted af
 assert.ok(css.includes("prefers-reduced-motion"), "reduced-motion support is required");
 assert.ok(css.includes("focus-visible"), "visible keyboard focus is required");
 assert.ok(css.includes("@media (max-width: 700px)"), "mobile layout is required");
-assert.ok(js.includes("row-evidence"), "latest rows must expose evidence status without hover");
+assert.ok(!js.includes("row-evidence"), "ranking rows must not show evidence labels");
 assert.ok(!js.includes("· 分母"), "denominator dates must not be shown in ranking badges");
+assert.ok(!html.includes('id="overall-status"'), "overall evidence status must remain hidden");
+assert.ok(!html.includes('id="source-health"'), "source evidence badges must remain hidden");
 assert.ok(!js.includes("innerHTML"), "dashboard rendering must avoid innerHTML injection");
 
 const headerStart = html.indexOf('<table id="latest-table">');
