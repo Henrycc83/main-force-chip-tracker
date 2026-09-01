@@ -30,7 +30,8 @@ def check_page(browser, *, width: int, height: int, name: str) -> None:
     evidence_rows = page.locator("#latest-table .row-evidence")
     assert evidence_rows.count() == 30
     assert evidence_rows.first.is_visible()
-    assert "分母" in evidence_rows.first.inner_text()
+    assert evidence_rows.first.inner_text() in {"已確認", "部分或代理", "不可用"}
+    assert "分母" not in page.locator("body").inner_text()
     assert page.locator("#overall-status").inner_text().strip() == STATUS_TEXT[PAYLOAD["status"]]
     assert not console_errors, console_errors
     assert page.evaluate("document.documentElement.scrollWidth <= window.innerWidth")

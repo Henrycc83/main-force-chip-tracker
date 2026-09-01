@@ -207,7 +207,7 @@ function createLatestRow(row) {
   const market = row.market_group === "listed" ? "上市" : "上櫃";
   const nameCell = textValue(row.name, "name-cell");
   const evidence = el("span", `row-evidence ${statusClass(row.evidence_status)}`);
-  evidence.textContent = `${statusText[row.evidence_status] || row.evidence_status || "不可用"} · 分母 ${row.denominator_date || row.issued_units_date || "不可用"}`;
+  evidence.textContent = statusText[row.evidence_status] || row.evidence_status || "不可用";
   nameCell.append(evidence);
   const values = [
     badgeValue(market, "market-tag"),
@@ -229,7 +229,7 @@ function createLatestRow(row) {
     if ([5, 6, 7, 8, 9, 11].includes(index)) cell.classList.add("numeric");
     tr.append(cell);
   });
-  tr.title = `排行證據：${statusText[row.evidence_status] || row.evidence_status || "不可用"}；分母日期：${row.denominator_date || row.issued_units_date || "不可用"}`;
+  tr.title = `排行證據：${statusText[row.evidence_status] || row.evidence_status || "不可用"}`;
   return tr;
 }
 
