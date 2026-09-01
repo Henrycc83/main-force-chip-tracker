@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="台股主力籌碼買超追蹤：每日排名、20交易日記憶與月度摘要。">
+    <meta name="color-scheme" content="light">
+    <title>主力籌碼觀測站</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">跳到主要內容</a>
+
+    <header class="masthead">
+      <div class="brand-block">
+        <p class="eyebrow">TAIWAN MARKET · AFTER CLOSE</p>
+        <h1>主力籌碼<br><span>觀測站</span></h1>
+        <p class="intro">把每日排行放進時間脈絡。數字先通過驗證，再談連續性。</p>
+      </div>
+
+      <div class="seal" aria-label="資料狀態">
+        <div class="seal__rail" aria-hidden="true"></div>
+        <div class="seal__content">
+          <p class="seal__label">最新確認交易日</p>
+          <p class="seal__date" id="data-date">讀取中</p>
+          <div class="seal__status-row">
+            <span class="status-chip" id="overall-status">載入資料</span>
+            <span id="qa-status">QA —</span>
+          </div>
+          <p class="seal__time">網站更新：<time id="generated-at">—</time></p>
+        </div>
+      </div>
+    </header>
+
+    <div id="demo-banner" class="demo-banner" hidden role="note">
+      目前顯示介面範例資料，不代表真實行情。正式流程發布後會自動移除此提示。
+    </div>
+
+    <main id="main-content" tabindex="-1">
+      <section class="quality-strip" aria-labelledby="quality-title">
+        <div class="section-heading compact">
+          <div>
+            <p class="section-kicker">DATA SEAL</p>
+            <h2 id="quality-title">資料品質</h2>
+          </div>
+          <p id="quality-summary">正在檢查資料完整性…</p>
+        </div>
+        <div class="metric-grid" id="quality-metrics" aria-live="polite"></div>
+        <div class="source-health" id="source-health"></div>
+      </section>
+
+      <section class="section-block" aria-labelledby="latest-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">TODAY / TOP 15 × 2</p>
+            <h2 id="latest-title">今日買超排行</h2>
+          </div>
+          <p>ETF保留原始名次，但與普通股分流解讀。</p>
+        </div>
+
+        <form class="filter-bar" id="rank-filters" role="search">
+          <label class="search-field">
+            <span>搜尋代碼或名稱</span>
+            <input id="rank-search" type="search" inputmode="search" placeholder="例：2330 或 台積電" autocomplete="off">
+          </label>
+          <fieldset>
+            <legend>市場</legend>
+            <div class="segmented" id="market-filter">
+              <label><input type="radio" name="market" value="all" checked><span>全部</span></label>
+              <label><input type="radio" name="market" value="listed"><span>上市</span></label>
+              <label><input type="radio" name="market" value="otc"><span>上櫃</span></label>
+            </div>
+          </fieldset>
+          <label class="select-field">
+            <span>證券類型</span>
+            <select id="type-filter">
+              <option value="all">全部類型</option>
+              <option value="ordinary_stock">普通股</option>
+              <option value="fund">ETF／基金型</option>
+              <option value="other">其他</option>
+            </select>
+          </label>
+        </form>
+
+        <p class="result-count" id="rank-result-count" aria-live="polite"></p>
+        <div class="table-shell" id="latest-table-shell">
+          <table id="latest-table">
+            <caption class="sr-only">上市與上櫃主力買超排名，可用欄名按鈕排序</caption>
+            <thead>
+              <tr>
+                <th scope="col" data-key="market"><button type="button">市場</button></th>
+                <th scope="col" data-key="rank"><button type="button">名次</button></th>
+                <th scope="col" data-key="code"><button type="button">代碼</button></th>
+                <th scope="col" data-key="name"><button type="button">名稱</button></th>
+                <th scope="col" data-key="security_type"><button type="button">類型</button></th>
+                <th scope="col" data-key="close" class="numeric"><button type="button">收盤價</button></th>
+                <th scope="col" data-key="change_percent" class="numeric"><button type="button">漲跌幅</button></th>
+                <th scope="col" data-key="net_buy_lots" class="numeric"><button type="button">買超張數</button></th>
+                <th scope="col" data-key="volume_lots" class="numeric"><button type="button">成交量</button></th>
+                <th scope="col" data-key="buy_volume_percent" class="numeric"><button type="button">買超比</button></th>
+                <th scope="col" data-key="stars"><button type="button">星等</button></th>
+                <th scope="col" data-key="capital_percent" class="numeric"><button type="button">股本占比</button></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <div class="state-panel" id="latest-state" hidden></div>
+        </div>
+      </section>
+
+      <section class="section-block memory-section" aria-labelledby="memory-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">ROLLING MEMORY / 20 SESSIONS</p>
+            <h2 id="memory-title">近20交易日記憶</h2>
+          </div>
+          <p>只累計有明確觀測的排行資料；未入榜不等於零買超。畫面顯示入榜日數前 20 檔。</p>
+        </div>
+        <div class="table-shell">
+          <table id="memory-table">
+            <caption class="sr-only">普通股近20交易日主力籌碼觀測</caption>
+            <thead>
+              <tr>
+                <th scope="col">代碼／名稱</th>
+                <th scope="col" class="numeric">前15日數</th>
+                <th scope="col" class="numeric">最長連續</th>
+                <th scope="col" class="numeric">觀察淨買超</th>
+                <th scope="col" class="numeric">加權買超比</th>
+                <th scope="col">最新狀態</th>
+                <th scope="col">證據</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <div class="state-panel" id="memory-state" hidden></div>
+        </div>
+      </section>
+
+      <section class="monthly-layout" aria-labelledby="monthly-title">
+        <div class="month-card">
+          <p class="section-kicker">MONTHLY REVIEW</p>
+          <h2 id="monthly-title">月度籌碼摘要</h2>
+          <p class="month-mark" id="monthly-period">—</p>
+          <dl class="month-facts" id="monthly-facts"></dl>
+          <p class="month-note" id="monthly-note"></p>
+        </div>
+        <div class="table-shell month-table-shell">
+          <table id="monthly-table">
+            <caption class="sr-only">上一完整月份主力籌碼候選摘要</caption>
+            <thead>
+              <tr>
+                <th scope="col">代碼／名稱</th>
+                <th scope="col">市場</th>
+                <th scope="col" class="numeric">入榜日數</th>
+                <th scope="col" class="numeric">最長連續</th>
+                <th scope="col" class="numeric">加權買超比</th>
+                <th scope="col" class="numeric">月買超占股本</th>
+                <th scope="col">分類</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <div class="state-panel" id="monthly-state" hidden></div>
+        </div>
+      </section>
+
+      <section class="report-dock" aria-labelledby="reports-title">
+        <div>
+          <p class="section-kicker">AUDIT TRAIL</p>
+          <h2 id="reports-title">完整報告與稽核軌跡</h2>
+        </div>
+        <nav id="report-links" aria-label="報告連結"></nav>
+      </section>
+    </main>
+
+    <footer>
+      <p>主力買超排行是觀測資料，不構成投資建議；星級只反映買超量占成交量比例。</p>
+      <p>每日 18:00（台北時間）更新 · 資料不足時維持上一份已驗證版本並清楚標示。</p>
+    </footer>
+
+    <div class="sr-only" id="app-announcer" aria-live="assertive"></div>
+  </body>
+</html>

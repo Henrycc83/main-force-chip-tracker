@@ -1,0 +1,7 @@
+{
+  "name": "main-force-chip-tracker-pages",
+  "private": true,
+  "scripts": {
+    "test:frontend": "node --check docs/app.js && node tests/verify-static.mjs"
+  }
+}
