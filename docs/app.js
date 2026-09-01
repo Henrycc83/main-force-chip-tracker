@@ -7,6 +7,9 @@ const state = {
   latestRows: [],
   filters: { query: "", market: "all", type: "all" },
   sort: { key: "market", direction: "asc" },
+  latestExpanded: false,
+  memoryExpanded: false,
+  monthlyExpanded: false,
 };
 
 const labels = {
@@ -116,6 +119,21 @@ function bindControls() {
       renderLatest();
     });
   });
+
+  document.querySelector("#memory-toggle").addEventListener("click", () => {
+    state.memoryExpanded = !state.memoryExpanded;
+    renderMemory(normalizeRows(state.payload?.rolling_20d));
+  });
+
+  document.querySelector("#latest-toggle").addEventListener("click", () => {
+    state.latestExpanded = !state.latestExpanded;
+    renderLatest();
+  });
+
+  document.querySelector("#monthly-toggle").addEventListener("click", () => {
+    state.monthlyExpanded = !state.monthlyExpanded;
+    renderMonthly(state.payload?.monthly);
+  });
 }
 
 function renderDashboard(payload) {
@@ -175,16 +193,33 @@ function renderLatest() {
     return matchesQuery && matchesMarket && matchesType;
   }).sort(compareRows);
 
+  const compactMobile = window.matchMedia("(max-width: 700px)").matches
+    && !state.latestExpanded
+    && !state.filters.query
+    && state.filters.market === "all"
+    && state.filters.type === "all";
+  const visibleRows = compactMobile ? rows.filter((row) => Number(row.rank) <= 5) : rows;
   updateSortHeaders();
-  body.replaceChildren(...rows.map(createLatestRow));
-  document.querySelector("#rank-result-count").textContent = `顯示 ${rows.length} 筆，共 ${state.latestRows.length} 筆已載入排行`;
-  empty.hidden = rows.length > 0;
-  if (!rows.length) setStatePanel(empty, "沒有符合條件的股票", "請清除搜尋字詞，或改選其他市場與證券類型。");
+  body.replaceChildren(...visibleRows.map(createLatestRow));
+  document.querySelector("#rank-result-count").textContent = compactMobile
+    ? `先顯示上市前5＋上櫃前5，共 ${rows.length} 筆可展開`
+    : `顯示 ${rows.length} 筆，共 ${state.latestRows.length} 筆已載入排行`;
+  const latestToggle = document.querySelector("#latest-toggle");
+  const canCompact = window.matchMedia("(max-width: 700px)").matches
+    && !state.filters.query && state.filters.market === "all" && state.filters.type === "all";
+  latestToggle.hidden = !canCompact;
+  latestToggle.setAttribute("aria-expanded", String(state.latestExpanded));
+  latestToggle.textContent = state.latestExpanded ? "收合為各市場前5" : "展開完整30筆";
+  empty.hidden = visibleRows.length > 0;
+  if (!visibleRows.length) setStatePanel(empty, "沒有符合條件的股票", "請清除搜尋字詞，或改選其他市場與證券類型。");
 }
 
 function createLatestRow(row) {
   const tr = document.createElement("tr");
   const market = row.market_group === "listed" ? "上市" : "上櫃";
+  tr.dataset.market = `${market}前15名`;
+  if (Number(row.rank) === 1) tr.classList.add("market-start");
+  if (Number(row.rank) <= 3) tr.classList.add("top-rank");
   const values = [
     badgeValue(market, "market-tag"),
     textValue(row.rank),
@@ -209,7 +244,8 @@ function createLatestRow(row) {
 }
 
 function renderMemory(rows) {
-  const visibleRows = rows.slice(0, 20);
+  const collapsedLimit = compactRowLimit();
+  const visibleRows = rows.slice(0, state.memoryExpanded ? 20 : collapsedLimit);
   const body = document.querySelector("#memory-table tbody");
   const empty = document.querySelector("#memory-state");
   body.replaceChildren(...visibleRows.map((row) => {
@@ -230,6 +266,7 @@ function renderMemory(rows) {
     return tr;
   }));
   empty.hidden = visibleRows.length > 0;
+  updateTableToggle("memory-toggle", state.memoryExpanded, rows.length, collapsedLimit, "完整20檔");
   if (!rows.length) setStatePanel(empty, "尚無20交易日記憶", "累積足夠的每日觀測後，這裡會顯示連續入榜與買賣方向。");
 }
 
@@ -238,7 +275,8 @@ function renderMonthly(monthly) {
   const rows = normalizeRows(monthly?.rows || monthly?.summary_rows || monthly?.summary);
   const ordinaryRows = rows.filter((row) => row.security_type === "ordinary_stock");
   const fundRows = rows.filter((row) => row.security_type !== "ordinary_stock");
-  const visibleRows = ordinaryRows.slice(0, 20);
+  const collapsedLimit = compactRowLimit();
+  const visibleRows = ordinaryRows.slice(0, state.monthlyExpanded ? 20 : collapsedLimit);
   document.querySelector("#monthly-period").textContent = value(metadata.period || metadata.month, "尚無月份");
 
   const facts = [
@@ -255,7 +293,7 @@ function renderMonthly(monthly) {
     return wrapper;
   }));
   const limitation = value(metadata.note || metadata.limitations, "月報只彙整具證據的排行觀測，不把未入榜視為零。");
-  document.querySelector("#monthly-note").textContent = `${limitation} 畫面顯示普通股前 ${Math.min(20, ordinaryRows.length)} 檔，ETF／其他與完整清單請見月報。`;
+  document.querySelector("#monthly-note").textContent = `${limitation} 目前顯示 ${visibleRows.length} 檔普通股；ETF／其他請見完整月報。`;
 
   const body = document.querySelector("#monthly-table tbody");
   const empty = document.querySelector("#monthly-state");
@@ -278,6 +316,7 @@ function renderMonthly(monthly) {
     return tr;
   }));
   empty.hidden = visibleRows.length > 0;
+  updateTableToggle("monthly-toggle", state.monthlyExpanded, ordinaryRows.length, collapsedLimit, "完整月度清單");
   if (!visibleRows.length) setStatePanel(empty, "尚無普通股月報", "每月第一天完成上月整理後，普通股候選會顯示在這裡。");
 }
 
@@ -322,6 +361,18 @@ function createMetric(metric) {
   const amount = el("p", `metric__value ${metric.tone}`); amount.textContent = metric.value;
   card.append(label, amount);
   return card;
+}
+
+function compactRowLimit() {
+  return window.matchMedia("(max-width: 700px)").matches ? 6 : 10;
+}
+
+function updateTableToggle(id, expanded, total, collapsedLimit, label) {
+  const button = document.querySelector(`#${id}`);
+  const canExpand = total > collapsedLimit;
+  button.hidden = !canExpand;
+  button.setAttribute("aria-expanded", String(expanded));
+  button.textContent = expanded ? "收合重點清單" : `展開${label}（${Math.min(20, total)}檔）`;
 }
 
 function compareRows(a, b) {

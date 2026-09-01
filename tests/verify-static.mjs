@@ -46,12 +46,13 @@ for (const [market, rows] of Object.entries(data.latest)) {
 for (const id of [
   "main-content", "data-date", "generated-at", "quality-metrics", "rank-search",
   "market-filter", "type-filter", "latest-table", "memory-table", "monthly-table",
-  "latest-state", "memory-state", "monthly-state", "app-announcer",
+  "latest-state", "memory-state", "monthly-state", "latest-toggle", "memory-toggle", "monthly-toggle", "app-announcer",
 ]) {
   assert.ok(html.includes(`id="${id}"`), `missing required UI hook #${id}`);
 }
 
 assert.ok(html.includes("class=\"skip-link\""), "skip link is required");
+assert.ok(html.includes("class=\"section-nav\""), "sticky section navigation is required");
 assert.ok(html.includes("aria-live"), "live-region feedback is required");
 assert.ok(html.includes("app.js?v="), "production script must be cache-busted after UI releases");
 assert.ok(css.includes("prefers-reduced-motion"), "reduced-motion support is required");

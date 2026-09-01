@@ -7,7 +7,7 @@
     <meta name="color-scheme" content="light">
     <title>主力籌碼觀測站</title>
     <link rel="stylesheet" href="./styles.css">
-    <script src="./app.js?v=20260901-hide-audit-labels" defer></script>
+    <script src="./app.js?v=20260901-clarity-layout-2" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">跳到主要內容</a>
@@ -35,6 +35,13 @@
     <div id="demo-banner" class="demo-banner" hidden role="note">
       目前顯示介面範例資料，不代表真實行情。正式流程發布後會自動移除此提示。
     </div>
+
+    <nav class="section-nav" aria-label="頁面區段">
+      <a href="#latest-title">今日排行</a>
+      <a href="#memory-title">20日記憶</a>
+      <a href="#monthly-title">月度摘要</a>
+      <a href="#reports-title">完整報告</a>
+    </nav>
 
     <main id="main-content" tabindex="-1">
       <section class="quality-strip" aria-labelledby="quality-title">
@@ -81,7 +88,10 @@
           </label>
         </form>
 
-        <p class="result-count" id="rank-result-count" aria-live="polite"></p>
+        <div class="result-toolbar">
+          <p class="result-count" id="rank-result-count" aria-live="polite"></p>
+          <button class="table-toggle" id="latest-toggle" type="button" aria-expanded="false">展開完整30筆</button>
+        </div>
         <div class="table-shell" id="latest-table-shell">
           <table id="latest-table">
             <caption class="sr-only">上市與上櫃主力買超排名，可用欄名按鈕排序</caption>
@@ -113,7 +123,10 @@
             <p class="section-kicker">ROLLING MEMORY / 20 SESSIONS</p>
             <h2 id="memory-title">近20交易日記憶</h2>
           </div>
-          <p>只累計有明確觀測的排行資料；未入榜不等於零買超。畫面顯示入榜日數前 20 檔。</p>
+          <div class="section-aside">
+            <p>依入榜日數排序，先看重點；需要時再展開完整20檔。</p>
+            <button class="table-toggle" id="memory-toggle" type="button" aria-expanded="false">展開完整20檔</button>
+          </div>
         </div>
         <div class="table-shell">
           <table id="memory-table">
@@ -141,6 +154,7 @@
           <p class="month-mark" id="monthly-period">—</p>
           <dl class="month-facts" id="monthly-facts"></dl>
           <p class="month-note" id="monthly-note"></p>
+          <button class="table-toggle table-toggle--inverse" id="monthly-toggle" type="button" aria-expanded="false">展開完整月度清單</button>
         </div>
         <div class="table-shell month-table-shell">
           <table id="monthly-table">
