@@ -1,5 +1,4 @@
 from pathlib import Path
-import re
 import json
 from urllib.parse import urljoin
 
@@ -9,6 +8,7 @@ from playwright.sync_api import sync_playwright
 ROOT_URL = "http://127.0.0.1:8765/"
 ARTIFACTS = Path("artifacts/qa")
 PAYLOAD = json.loads(Path("docs/data/dashboard.json").read_text(encoding="utf-8"))
+EXPECTED_RENDERED_DATE = PAYLOAD["data_date"].replace("-", "/")
 
 
 def check_page(browser, *, width: int, height: int, name: str) -> None:
@@ -19,7 +19,10 @@ def check_page(browser, *, width: int, height: int, name: str) -> None:
     page.wait_for_load_state("networkidle")
 
     rendered_date = page.locator("#data-date").inner_text()
-    assert re.search(r"2026\D+0?9\D+0?1", rendered_date), rendered_date
+    assert rendered_date == EXPECTED_RENDERED_DATE, (
+        f"rendered date {rendered_date!r} does not match dashboard "
+        f"date {EXPECTED_RENDERED_DATE!r}"
+    )
     expected_latest = 10 if width <= 700 else 30
     assert page.locator("#latest-table tbody tr").count() == expected_latest
     if width <= 700:
