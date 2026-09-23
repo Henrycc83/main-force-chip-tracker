@@ -1,6 +1,6 @@
 {
   "data_date": "2026-09-23",
-  "generated_at": "2026-09-23T18:11:02.047677+08:00",
+  "generated_at": "2026-09-23T22:49:08.561100+08:00",
   "latest": {
     "listed": [
       {
@@ -20,7 +20,7 @@
         "quote_source": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20260923&type=ALLBUT0999&response=json",
         "rank": 1,
         "ranking_date": "2026-09-23",
-        "ranking_source": "https://r.jina.ai/https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
+        "ranking_source": "https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
         "security_type": "active_etf",
         "stars": 5,
         "volume_lots": "358500.381"
@@ -42,7 +42,7 @@
         "quote_source": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20260923&type=ALLBUT0999&response=json",
         "rank": 2,
         "ranking_date": "2026-09-23",
-        "ranking_source": "https://r.jina.ai/https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
+        "ranking_source": "https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
         "security_type": "active_etf",
         "stars": 5,
         "volume_lots": "224563.308"
@@ -64,7 +64,7 @@
         "quote_source": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20260923&type=ALLBUT0999&response=json",
         "rank": 3,
         "ranking_date": "2026-09-23",
-        "ranking_source": "https://r.jina.ai/https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
+        "ranking_source": "https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
         "security_type": "active_etf",
         "stars": 5,
         "volume_lots": "113516.234"
@@ -86,7 +86,7 @@
         "quote_source": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20260923&type=ALLBUT0999&response=json",
         "rank": 4,
         "ranking_date": "2026-09-23",
-        "ranking_source": "https://r.jina.ai/https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
+        "ranking_source": "https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
         "security_type": "active_etf",
         "stars": 5,
         "volume_lots": "65855.866"
@@ -108,7 +108,7 @@
         "quote_source": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20260923&type=ALLBUT0999&response=json",
         "rank": 5,
         "ranking_date": "2026-09-23",
-        "ranking_source": "https://r.jina.ai/https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
+        "ranking_source": "https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
         "security_type": "active_etf",
         "stars": 5,
         "volume_lots": "49003.982"
@@ -130,7 +130,7 @@
         "quote_source": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20260923&type=ALLBUT0999&response=json",
         "rank": 6,
         "ranking_date": "2026-09-23",
-        "ranking_source": "https://r.jina.ai/https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
+        "ranking_source": "https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
         "security_type": "ordinary_stock",
         "stars": 5,
         "volume_lots": "62507.257"
@@ -152,7 +152,7 @@
         "quote_source": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20260923&type=ALLBUT0999&response=json",
         "rank": 7,
         "ranking_date": "2026-09-23",
-        "ranking_source": "https://r.jina.ai/https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
+        "ranking_source": "https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
         "security_type": "leveraged_etf",
         "stars": 4,
         "volume_lots": "137784.001"
@@ -174,7 +174,7 @@
         "quote_source": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20260923&type=ALLBUT0999&response=json",
         "rank": 8,
         "ranking_date": "2026-09-23",
-        "ranking_source": "https://r.jina.ai/https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
+        "ranking_source": "https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
         "security_type": "ordinary_stock",
         "stars": 4,
         "volume_lots": "118630.577"
@@ -196,7 +196,7 @@
         "quote_source": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20260923&type=ALLBUT0999&response=json",
         "rank": 9,
         "ranking_date": "2026-09-23",
-        "ranking_source": "https://r.jina.ai/https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
+        "ranking_source": "https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
         "security_type": "active_etf",
         "stars": 5,
         "volume_lots": "34722.831"
@@ -218,7 +218,7 @@
         "quote_source": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20260923&type=ALLBUT0999&response=json",
         "rank": 10,
         "ranking_date": "2026-09-23",
-        "ranking_source": "https://r.jina.ai/https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
+        "ranking_source": "https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
         "security_type": "ordinary_stock",
         "stars": 4,
         "volume_lots": "130648.955"
@@ -240,7 +240,7 @@
         "quote_source": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20260923&type=ALLBUT0999&response=json",
         "rank": 11,
         "ranking_date": "2026-09-23",
-        "ranking_source": "https://r.jina.ai/https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
+        "ranking_source": "https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
         "security_type": "etf",
         "stars": 5,
         "volume_lots": "80129.544"
@@ -262,7 +262,7 @@
         "quote_source": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20260923&type=ALLBUT0999&response=json",
         "rank": 12,
         "ranking_date": "2026-09-23",
-        "ranking_source": "https://r.jina.ai/https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
+        "ranking_source": "https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
         "security_type": "active_etf",
         "stars": 5,
         "volume_lots": "57500.282"
@@ -284,7 +284,7 @@
         "quote_source": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20260923&type=ALLBUT0999&response=json",
         "rank": 13,
         "ranking_date": "2026-09-23",
-        "ranking_source": "https://r.jina.ai/https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
+        "ranking_source": "https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
         "security_type": "etf",
         "stars": 5,
         "volume_lots": "24643.885"
@@ -306,7 +306,7 @@
         "quote_source": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20260923&type=ALLBUT0999&response=json",
         "rank": 14,
         "ranking_date": "2026-09-23",
-        "ranking_source": "https://r.jina.ai/https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
+        "ranking_source": "https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
         "security_type": "ordinary_stock",
         "stars": 5,
         "volume_lots": "35754.545"
@@ -328,7 +328,7 @@
         "quote_source": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20260923&type=ALLBUT0999&response=json",
         "rank": 15,
         "ranking_date": "2026-09-23",
-        "ranking_source": "https://r.jina.ai/https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
+        "ranking_source": "https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1",
         "security_type": "ordinary_stock",
         "stars": 3,
         "volume_lots": "99541.727"
@@ -671,7 +671,7 @@
   "source_health": {
     "listed_denominators": "partial",
     "listed_quotes": "confirmed",
-    "listed_ranking": "partial",
+    "listed_ranking": "confirmed",
     "otc_denominators": "confirmed",
     "otc_quotes": "confirmed",
     "otc_ranking": "confirmed"
