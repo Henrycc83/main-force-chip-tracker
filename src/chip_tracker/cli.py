@@ -8,6 +8,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from chip_tracker.memory import load_snapshots
+from chip_tracker.market_calendar import official_market_closure
 from chip_tracker.pipeline import run_calendar_reports, run_pipeline
 from chip_tracker.reports import write_monthly_report
 from chip_tracker.seed import import_reports
@@ -55,6 +56,23 @@ def main(argv: list[str] | None = None) -> int:
             "scheduled_reports": [str(path) for path in scheduled_outputs],
         }, ensure_ascii=False))
         return 0
+    if not args.fixture:
+        try:
+            closure = official_market_closure(target)
+        except SourceError as exc:
+            print(f"TWSE market calendar unavailable: {exc}", file=sys.stderr)
+            closure = None
+        if closure:
+            write_json_atomic(root / "data" / "run-status" / f"{target}.json", {
+                "data_date": target.isoformat(), "published": False,
+                "status": "no_new_data", "reason": closure,
+                "source": "https://www.twse.com.tw/holidaySchedule/holidaySchedule?response=json",
+            })
+            print(json.dumps({
+                "status": "no_new_data", "data_date": None,
+                "reason": closure, "scheduled_reports": [str(path) for path in scheduled_outputs],
+            }, ensure_ascii=False))
+            return 0
     try:
         payload = run_pipeline(root, provider, target, dashboard_path=args.dashboard_path)
     except SourceError as exc:

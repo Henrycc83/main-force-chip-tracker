@@ -6,6 +6,7 @@ import pytest
 
 from chip_tracker.builder import build_snapshot
 from chip_tracker.memory import monthly_summary, rolling_20d
+from chip_tracker.market_calendar import official_market_closure
 from chip_tracker.models import DailySnapshot
 from chip_tracker.pipeline import run_calendar_reports, run_pipeline
 from chip_tracker.publisher import PublicationRejected, publish
@@ -135,6 +136,18 @@ def test_weekly_report_marks_missing_trading_days_and_known_closure(
     assert "2026-09-21, 2026-09-22" in report
     assert "2026-09-25 中秋節" in report
     assert "2026-09-25；這些日期的排行不可推定" not in report
+
+
+def test_official_calendar_distinguishes_closure_from_trading_event():
+    def fetch(_url):
+        return {"stat": "ok", "queryYear": 2026, "data": [
+            ["2026-09-25", "中秋節", "依規定放假1日。"],
+            ["2026-02-23", "農曆春節後開始交易日", ""],
+        ]}
+
+    assert official_market_closure(date(2026, 9, 25), fetch=fetch) == "中秋節"
+    assert official_market_closure(date(2026, 2, 23), fetch=fetch) is None
+    assert official_market_closure(date(2026, 9, 24), fetch=fetch) is None
 
 
 def _dated(row, day):
