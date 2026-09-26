@@ -1,6 +1,14 @@
 name: Refresh data and deploy Pages
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/refresh-and-deploy.yml"
+      - "src/**"
+      - "tests/**"
+      - "reports/**"
+      - "docs/**"
   schedule:
     # 10:00 UTC = 18:00 Asia/Taipei (Taiwan has no daylight saving time).
     - cron: "0 10 * * *"
