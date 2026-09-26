@@ -9,6 +9,7 @@ from chip_tracker.memory import monthly_summary, rolling_20d
 from chip_tracker.models import DailySnapshot
 from chip_tracker.pipeline import run_calendar_reports, run_pipeline
 from chip_tracker.publisher import PublicationRejected, publish
+from chip_tracker.reports import render_weekly
 from chip_tracker.sources import FixtureProvider
 from chip_tracker.storage import read_json
 from chip_tracker.validator import validate_snapshot
@@ -116,6 +117,24 @@ def test_sunday_analysis_has_evidence_countercase_and_conditional_strategy(
     for required in ("反證", "3 個驗證指標", "試單觸發", "失效／停損", "不交易情境", "ETF／其他資金流附錄"):
         assert required in text
     assert (tmp_path / "reports/main-force-chips/analysis-latest.md").read_text(encoding="utf-8") == text
+
+
+def test_weekly_report_marks_missing_trading_days_and_known_closure(
+    fixture_file, target_date
+):
+    base = build_snapshot(FixtureProvider(fixture_file), target_date)
+    observed_days = (date(2026, 9, 23), date(2026, 9, 24))
+    snapshots = [DailySnapshot(
+        day,
+        tuple(_dated(row, day) for row in base.listed),
+        tuple(_dated(row, day) for row in base.otc),
+        base.generated_at, base.source_health,
+    ) for day in observed_days]
+    report = render_weekly(snapshots)
+    assert "覆蓋狀態：不完整" in report
+    assert "2026-09-21, 2026-09-22" in report
+    assert "2026-09-25 中秋節" in report
+    assert "2026-09-25；這些日期的排行不可推定" not in report
 
 
 def _dated(row, day):

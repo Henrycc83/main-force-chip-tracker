@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections import defaultdict
-from datetime import date
+from datetime import date, timedelta
 from decimal import Decimal, ROUND_HALF_UP
 from pathlib import Path
 from shutil import copytree
@@ -178,23 +178,50 @@ def render_weekly(snapshots: list[DailySnapshot]) -> str:
         return "# 主力籌碼週報\n\n無資料。\n"
     iso = snapshots[-1].data_date.isocalendar()
     segments = consecutive_segments(snapshots)
+    monday = snapshots[-1].data_date - timedelta(days=snapshots[-1].data_date.weekday())
+    observed = {snapshot.data_date for snapshot in snapshots}
+    known_closures = {
+        date(2026, 9, 25): "中秋節（證交所開休市日曆 https://www.twse.com.tw/holidaySchedule/holidaySchedule?response=html）",
+    }
+    unobserved = [monday + timedelta(days=offset) for offset in range(5)
+                  if monday + timedelta(days=offset) not in observed]
+    unexplained = [day for day in unobserved if day not in known_closures]
     lines = [
         f"# 主力籌碼買超週報｜{iso.year}-W{iso.week:02d}", "",
-        f"- 實際交易日：{len(snapshots)}", "- 未入榜不得視為0張。", "",
-        "| 市場 | 代碼 | 名稱 | 類型 | 連續區段 | 天數 | 名次 | 累計買超／成交量 | 加權買超比 | 價格變化 | 股本占比 |",
-        "|---|---|---|---|---|---:|---|---:|---:|---:|---:|",
+        f"- 已取得交易日：{len(snapshots)}（{', '.join(str(day) for day in sorted(observed))}）。",
+        f"- 覆蓋狀態：{'不完整' if unexplained else '已涵蓋已知交易日'}。"
+        + (f" 未取得平日：{', '.join(str(day) for day in unexplained)}；這些日期的排行不可推定。" if unexplained else ""),
+        "- 已知休市：" + (
+            "、".join(f"{day} {known_closures[day]}" for day in unobserved if day in known_closures)
+            if any(day in known_closures for day in unobserved) else "無已核對項目"
+        ) + "。",
+        "- 未入榜不得視為0張；缺少交易日資料時，連續天數只代表已取得日期的可觀察區段。",
+        "- ETF／其他商品只觀察資金流，不解讀為公司鎖籌碼。", "",
     ]
-    for row in segments:
-        capital_text = (
-            f"{row['observed_capital_percent']}%"
-            if row["observed_capital_percent"] is not None else "不可用"
-        )
-        lines.append(
-            f"| {row['market']} | {row['code']} | {row['name']} | {row['security_type']} | "
-            f"{row['start']}–{row['end']} | {row['days']} | {','.join(map(str, row['ranks']))} | "
-            f"{row['observed_buy_lots']}／{row['observed_volume_lots']} | {row['weighted_buy_percent']}% | "
-            f"{row['price_change_percent']}% | {capital_text} |"
-        )
+    for market, market_label in (("listed", "上市"), ("otc", "上櫃")):
+        for ordinary, type_label in ((True, "普通股"), (False, "ETF／其他商品")):
+            group = [row for row in segments if row["market"] == market
+                     and (row["security_type"] == SecurityType.ORDINARY.value) == ordinary]
+            lines += [f"## {market_label}｜{type_label}", ""]
+            if not group:
+                lines += ["無符合連續至少 2 個已取得交易日的標的。", ""]
+                continue
+            lines += [
+                "| 代碼 | 名稱 | 類型 | 連續區段 | 天數 | 名次 | 累計買超／成交量 | 加權買超比 | 價格變化 | 股本占比 |",
+                "|---|---|---|---|---:|---|---:|---:|---:|---:|",
+            ]
+            for row in group:
+                capital_text = (
+                    f"{row['observed_capital_percent']}%"
+                    if row["observed_capital_percent"] is not None else "不可用"
+                )
+                lines.append(
+                    f"| {row['code']} | {row['name']} | {row['security_type']} | "
+                    f"{row['start']}–{row['end']} | {row['days']} | {','.join(map(str, row['ranks']))} | "
+                    f"{row['observed_buy_lots']}／{row['observed_volume_lots']} | {row['weighted_buy_percent']}% | "
+                    f"{row['price_change_percent']}% | {capital_text} |"
+                )
+            lines.append("")
     lines += ["", "## 每日明細", ""]
     for row in segments:
         lines += [
