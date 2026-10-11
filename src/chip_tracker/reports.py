@@ -173,28 +173,39 @@ def write_daily_report(root: Path, snapshot: DailySnapshot) -> Path:
     return target
 
 
-def render_weekly(snapshots: list[DailySnapshot]) -> str:
-    if not snapshots:
-        return "# 主力籌碼週報\n\n無資料。\n"
-    iso = snapshots[-1].data_date.isocalendar()
-    segments = consecutive_segments(snapshots)
-    monday = snapshots[-1].data_date - timedelta(days=snapshots[-1].data_date.weekday())
+def _week_coverage_lines(snapshots: list[DailySnapshot], report_date: date) -> list[str]:
+    monday = report_date - timedelta(days=report_date.weekday())
     observed = {snapshot.data_date for snapshot in snapshots}
     known_closures = {
         date(2026, 9, 25): "中秋節（證交所開休市日曆 https://www.twse.com.tw/holidaySchedule/holidaySchedule?response=html）",
+        date(2026, 9, 28): "教師節（證交所開休市日曆）",
+        date(2026, 10, 9): "國慶日補假（證交所開休市日曆）",
+        date(2026, 10, 26): "臺灣光復節補假（證交所開休市日曆）",
+        date(2026, 12, 25): "行憲紀念日（證交所開休市日曆）",
     }
     unobserved = [monday + timedelta(days=offset) for offset in range(5)
                   if monday + timedelta(days=offset) not in observed]
     unexplained = [day for day in unobserved if day not in known_closures]
-    lines = [
-        f"# 主力籌碼買超週報｜{iso.year}-W{iso.week:02d}", "",
-        f"- 已取得交易日：{len(snapshots)}（{', '.join(str(day) for day in sorted(observed))}）。",
+    return [
+        f"- 已取得交易日：{len(snapshots)}（{', '.join(str(day) for day in sorted(observed)) or '無'}）。",
         f"- 覆蓋狀態：{'不完整' if unexplained else '已涵蓋已知交易日'}。"
         + (f" 未取得平日：{', '.join(str(day) for day in unexplained)}；這些日期的排行不可推定。" if unexplained else ""),
         "- 已知休市：" + (
             "、".join(f"{day} {known_closures[day]}" for day in unobserved if day in known_closures)
             if any(day in known_closures for day in unobserved) else "無已核對項目"
-        ) + "。",
+        ) + "。休市依據：https://www.twse.com.tw/holidaySchedule/holidaySchedule?response=html",
+    ]
+
+
+def render_weekly(snapshots: list[DailySnapshot], report_date: date | None = None) -> str:
+    report_date = report_date or (snapshots[-1].data_date if snapshots else None)
+    if report_date is None:
+        return "# 主力籌碼週報\n\n無資料。\n"
+    iso = report_date.isocalendar()
+    segments = consecutive_segments(snapshots)
+    lines = [
+        f"# 主力籌碼買超週報｜{iso.year}-W{iso.week:02d}", "",
+        *_week_coverage_lines(snapshots, report_date),
         "- 未入榜不得視為0張；缺少交易日資料時，連續天數只代表已取得日期的可觀察區段。",
         "- ETF／其他商品只觀察資金流，不解讀為公司鎖籌碼。", "",
     ]
@@ -222,7 +233,9 @@ def render_weekly(snapshots: list[DailySnapshot]) -> str:
                     f"{row['price_change_percent']}% | {capital_text} |"
                 )
             lines.append("")
-    lines += ["", "## 每日明細", ""]
+    lines += ["## 每日明細", ""]
+    if not segments:
+        lines += ["無符合連續條件的每日明細。", ""]
     for row in segments:
         lines += [
             f"### {row['code']} {row['name']}｜{row['start']}–{row['end']}", "",
@@ -242,9 +255,12 @@ def render_weekly(snapshots: list[DailySnapshot]) -> str:
     return "\n".join(lines).rstrip() + "\n"
 
 
-def write_weekly_report(root: Path, snapshots: list[DailySnapshot]) -> Path:
-    latest = snapshots[-1].data_date.isocalendar()
-    payload = render_weekly(snapshots)
+def write_weekly_report(
+    root: Path, snapshots: list[DailySnapshot], report_date: date | None = None
+) -> Path:
+    report_date = report_date or snapshots[-1].data_date
+    latest = report_date.isocalendar()
+    payload = render_weekly(snapshots, report_date)
     base = root / "reports" / "main-force-chips"
     target = base / "weekly" / f"{latest.year}-W{latest.week:02d}.md"
     write_text_atomic(target, payload)
@@ -253,22 +269,36 @@ def write_weekly_report(root: Path, snapshots: list[DailySnapshot]) -> Path:
     return target
 
 
-def render_analysis(snapshots: list[DailySnapshot]) -> str:
+def render_analysis(snapshots: list[DailySnapshot], report_date: date | None = None) -> str:
     if not snapshots:
-        return "# 主力籌碼週日分析\n\n無本週交易資料；暫不觸發。\n"
-    iso = snapshots[-1].data_date.isocalendar()
+        if report_date is None:
+            return "# 主力籌碼週日分析\n\n無本週交易資料；暫不觸發。\n"
+        iso = report_date.isocalendar()
+        return "\n".join([
+            f"# 潛在主力籌碼週日分析｜{iso.year}-W{iso.week:02d}", "",
+            *_week_coverage_lines(snapshots, report_date), "",
+            "本週沒有可核對的交易日排行；無法判斷連續入榜或主力鎖籌，暫不觸發。", "",
+        ])
+    report_date = report_date or snapshots[-1].data_date
+    iso = report_date.isocalendar()
     segments = consecutive_segments(snapshots)
     ordinary = [x for x in segments if x["security_type"] == SecurityType.ORDINARY.value]
     funds = [x for x in segments if x["security_type"] != SecurityType.ORDINARY.value]
     lines = [
         f"# 潛在主力籌碼週日分析｜{iso.year}-W{iso.week:02d}", "",
         "- 性質：條件式追蹤，不是買賣建議，也不承諾報酬。",
+        *_week_coverage_lines(snapshots, report_date),
         "- 自動資料範圍：本週前15名排行、量價、買超比與股本占比；三大法人、重大訊息與產業催化在本次自動執行中標示不可用。",
         "- 限制：未入榜代表未知，不得當成0張；單一排行不能證明同一主力持續鎖籌。", "",
         "## 普通股候選", "",
     ]
     if not ordinary:
-        lines += ["本週沒有連續至少2個交易日入榜的普通股，暫不觸發。", ""]
+        reason = (
+            "本週可核對交易日少於2日，無法驗證普通股連續入榜，暫不觸發。"
+            if len(snapshots) < 2 else
+            "本週沒有連續至少2個交易日入榜的普通股，暫不觸發。"
+        )
+        lines += [reason, ""]
     for row in ordinary:
         weighted = Decimal(row["weighted_buy_percent"])
         capital = Decimal(row["observed_capital_percent"]) if row["observed_capital_percent"] else None
@@ -330,9 +360,12 @@ def render_analysis(snapshots: list[DailySnapshot]) -> str:
     return "\n".join(lines).rstrip() + "\n"
 
 
-def write_analysis_report(root: Path, snapshots: list[DailySnapshot]) -> Path:
-    latest = snapshots[-1].data_date.isocalendar()
-    payload = render_analysis(snapshots)
+def write_analysis_report(
+    root: Path, snapshots: list[DailySnapshot], report_date: date | None = None
+) -> Path:
+    report_date = report_date or snapshots[-1].data_date
+    latest = report_date.isocalendar()
+    payload = render_analysis(snapshots, report_date)
     base = root / "reports" / "main-force-chips"
     target = base / "analysis" / f"{latest.year}-W{latest.week:02d}.md"
     write_text_atomic(target, payload)

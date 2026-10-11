@@ -42,7 +42,8 @@ def build_snapshot(provider: MarketDataProvider, target_date: date) -> DailySnap
             if denominator is None:
                 status = EvidenceStatus.PARTIAL
             elif denominator.data_date > target_date:
-                raise SourceError(f"future denominator: {rank.code}")
+                # A current issuance snapshot cannot be applied to an older trade date.
+                status = EvidenceStatus.PARTIAL
             else:
                 cap = capital_percent(rank.net_buy_lots, denominator.issued_units)
                 if denominator.data_date != target_date:
@@ -65,7 +66,10 @@ def build_snapshot(provider: MarketDataProvider, target_date: date) -> DailySnap
                 ranking_date=rank.data_date,
                 quote_date=quote.data_date,
                 denominator_date=denominator.data_date if denominator else None,
-                issued_units=denominator.issued_units if denominator else None,
+                issued_units=(
+                    denominator.issued_units
+                    if denominator and denominator.data_date <= target_date else None
+                ),
                 ranking_source=rank.source,
                 quote_source=quote.source,
                 denominator_source=denominator.source if denominator else None,

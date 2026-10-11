@@ -1,10 +1,11 @@
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 from dataclasses import replace
 from decimal import Decimal
 
 import pytest
 
 from chip_tracker.builder import build_snapshot
+from chip_tracker.cli import resolve_target_date
 from chip_tracker.memory import monthly_summary, rolling_20d
 from chip_tracker.market_calendar import official_market_closure
 from chip_tracker.models import DailySnapshot
@@ -12,6 +13,7 @@ from chip_tracker.pipeline import run_calendar_reports, run_pipeline
 from chip_tracker.publisher import PublicationRejected, publish
 from chip_tracker.reports import render_weekly
 from chip_tracker.sources import FixtureProvider
+from chip_tracker.sources.base import Denominator
 from chip_tracker.storage import read_json
 from chip_tracker.validator import validate_snapshot
 
@@ -48,6 +50,30 @@ def test_proxy_rank_is_published_as_partial(tmp_path, fixture_file, target_date)
     assert payload["status"] == "partial"
     assert payload["quality"]["source_health"]["listed_ranking"] == "partial"
     assert all(row["evidence_status"] == "partial" for row in payload["latest"]["listed"])
+
+
+def test_future_issuance_does_not_block_quotes_or_create_capital_ratio(
+    fixture_file, target_date
+):
+    class FutureIssuanceFixture(FixtureProvider):
+        def denominators(self, market, codes, target):
+            result = super().denominators(market, codes, target)
+            first_code = next(iter(sorted(codes)))
+            original = result[first_code]
+            result[first_code] = Denominator(
+                code=first_code, issued_units=original.issued_units,
+                data_date=target + timedelta(days=1), source=original.source,
+                security_type=original.security_type,
+            )
+            return result
+
+    snapshot = build_snapshot(FutureIssuanceFixture(fixture_file), target_date)
+    affected = [row for row in (*snapshot.listed, *snapshot.otc)
+                if row.denominator_date == target_date + timedelta(days=1)]
+    assert len(affected) == 2
+    assert all(row.capital_percent is None and row.issued_units is None for row in affected)
+    assert all(row.evidence_status.value == "partial" for row in affected)
+    assert validate_snapshot(snapshot).passed
 
 
 def test_invalid_candidate_never_overwrites_dashboard(tmp_path, fixture_file, target_date):
@@ -148,6 +174,25 @@ def test_official_calendar_distinguishes_closure_from_trading_event():
     assert official_market_closure(date(2026, 9, 25), fetch=fetch) == "中秋節"
     assert official_market_closure(date(2026, 2, 23), fetch=fetch) is None
     assert official_market_closure(date(2026, 9, 24), fetch=fetch) is None
+
+
+def test_scheduled_target_date_survives_taipei_midnight_delay():
+    started = datetime(2026, 10, 8, 17, 16, tzinfo=timezone.utc)
+    assert resolve_target_date(None, utc_now=started, scheduled=True) == date(2026, 10, 8)
+    assert resolve_target_date(None, utc_now=started, scheduled=False) == date(2026, 10, 9)
+
+
+def test_empty_week_publishes_explicit_no_data_weekly_and_analysis(tmp_path):
+    weekly = run_calendar_reports(tmp_path, date(2026, 10, 10))[0]
+    assert weekly.name == "2026-W41.md"
+    assert "已取得交易日：0" in weekly.read_text(encoding="utf-8")
+    assert "2026-10-09 國慶日補假" in weekly.read_text(encoding="utf-8")
+    analysis = run_calendar_reports(tmp_path, date(2026, 10, 11))[0]
+    assert analysis.name == "2026-W41.md"
+    assert "暫不觸發" in analysis.read_text(encoding="utf-8")
+    assert (tmp_path / "reports/main-force-chips/analysis-latest.md").read_text(
+        encoding="utf-8"
+    ) == analysis.read_text(encoding="utf-8")
 
 
 def _dated(row, day):

@@ -41,14 +41,12 @@ def run_calendar_reports(root: Path, target_date: date) -> list[Path]:
             item for item in history
             if item.data_date.isocalendar()[:2] == target_date.isocalendar()[:2]
         ]
-        if same_week:
-            outputs.append(write_weekly_report(root, same_week))
+        outputs.append(write_weekly_report(root, same_week, target_date))
     if target_date.weekday() == 6:
         same_week = [
             item for item in history
             if item.data_date.isocalendar()[:2] == target_date.isocalendar()[:2]
         ]
-        if same_week:
-            outputs.append(write_analysis_report(root, same_week))
+        outputs.append(write_analysis_report(root, same_week, target_date))
     sync_static_reports(root)
     return outputs

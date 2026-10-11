@@ -2,8 +2,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
-from datetime import datetime
+from datetime import date, datetime, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -31,6 +32,16 @@ def parser() -> argparse.ArgumentParser:
     return result
 
 
+def resolve_target_date(value: str | None, *, utc_now: datetime, scheduled: bool) -> date:
+    if value:
+        return date.fromisoformat(value)
+    # A delayed GitHub cron often starts after midnight in Taipei. Its UTC
+    # calendar date still identifies the intended 18:00 Taipei report day.
+    if scheduled:
+        return utc_now.date()
+    return utc_now.astimezone(ZoneInfo("Asia/Taipei")).date()
+
+
 def main(argv: list[str] | None = None) -> int:
     args = parser().parse_args(argv)
     root = args.root.resolve()
@@ -43,9 +54,9 @@ def main(argv: list[str] | None = None) -> int:
         target = write_monthly_report(root, history, args.month)
         print(target)
         return 0
-    target = (
-        datetime.strptime(args.target_date, "%Y-%m-%d").date()
-        if args.target_date else datetime.now(ZoneInfo("Asia/Taipei")).date()
+    target = resolve_target_date(
+        args.target_date, utc_now=datetime.now(timezone.utc),
+        scheduled=os.environ.get("GITHUB_EVENT_NAME") == "schedule",
     )
     provider = FixtureProvider(args.fixture) if args.fixture else LiveProvider()
     scheduled_outputs = run_calendar_reports(root, target)
