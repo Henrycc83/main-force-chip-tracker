@@ -1,0 +1,9 @@
+{
+  "data_date": "2026-10-15",
+  "published": true,
+  "qa": {
+    "checked_rows": 30,
+    "errors": [],
+    "passed": true
+  }
+}
