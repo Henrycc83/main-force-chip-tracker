@@ -1,86 +1,86 @@
-# 主力籌碼買超每日追蹤｜2026-11-23
+# 主力籌碼買超每日追蹤｜2026-11-24
 
-- 整體證據狀態：已確認；30 筆結構與公式均已由獨立驗證器確認。
+- 整體證據狀態：部分或代理；30 筆結構與公式均已由獨立驗證器確認。
 
 ## 上市主力買超前15名
 
 | 市場 | 名次 | 代碼 | 名稱 | 證券類型 | 收盤價 | 今日收盤漲跌幅 | 主力買超量（張） | 成交量（張） | 買超量 ÷ 成交量百分比 | 星等 | 股本占比 |
 |---|---:|---|---|---|---:|---:|---:|---:|---:|:---:|---:|
-| 上市 | 1 | 00632R | 元大台灣50反1 | inverse_etf | 12.16 | -2.88% | 91690 | 711579.813 | 12.89% | ★★★ | 4.3940% |
-| 上市 | 2 | 2303 | 聯電 | ordinary_stock | 88.3 | +9.96% | 26950 | 300769.461 | 8.96% | ★★ | 0.2144% |
-| 上市 | 3 | 00953B | 群益優選非投等債 | bond_etf | 9.59 | +0.10% | 17642 | 45513.781 | 38.76% | ★★★★★ | 0.4000% |
-| 上市 | 4 | 00712 | 復華富時不動產 | etf | 6.51 | +0.15% | 13603 | 35768.175 | 38.03% | ★★★★★ | 0.2121% |
-| 上市 | 5 | 6770 | 力積電 | ordinary_stock | 48.5 | +9.98% | 13377 | 106711.351 | 12.54% | ★★★ | 0.2839% |
-| 上市 | 6 | 00664R | 國泰臺灣加權反1 | inverse_etf | 1.95 | -2.99% | 9956 | 103784.639 | 9.59% | ★★ | 1.4021% |
-| 上市 | 7 | 00673R | 期元大S＆P原油反1 | inverse_etf | 11.21 | -0.97% | 8786 | 22627.179 | 38.83% | ★★★★★ | 0.9467% |
-| 上市 | 8 | 2890 | 永豐金 | ordinary_stock | 36.7 | +1.94% | 7513 | 93242.581 | 8.06% | ★★ | 0.0508% |
-| 上市 | 9 | 00988A | 主動統一全球創新 | active_etf | 11.75 | +0.95% | 7507 | 29381.968 | 25.55% | ★★★★★ | 0.2547% |
-| 上市 | 10 | 00671R | 富邦NASDAQ反1 | inverse_etf | 2.74 | +1.48% | 6823 | 16645.157 | 40.99% | ★★★★★ | 1.4708% |
-| 上市 | 11 | 1303 | 南亞 | ordinary_stock | 226.5 | +9.95% | 6548 | 128627.77 | 5.09% | ★★ | 0.0826% |
-| 上市 | 12 | 00680L | 元大美債20正2 | leveraged_etf | 6.31 | +1.61% | 6532 | 20292.189 | 32.19% | ★★★★★ | 0.5409% |
-| 上市 | 13 | 2027 | 大成鋼 | ordinary_stock | 44.75 | +5.29% | 5150 | 29824.449 | 17.27% | ★★★★ | 0.1993% |
-| 上市 | 14 | 00940 | 元大台灣價值高息 | etf | 10.86 | +2.16% | 4961 | 21452.719 | 23.13% | ★★★★★ | 0.1001% |
-| 上市 | 15 | 00882 | 中信中國高股息 | etf | 15.14 | +0.00% | 4842 | 13819.436 | 35.04% | ★★★★★ | 0.2698% |
+| 上市 | 1 | 00673R | 期元大S＆P原油反1 | inverse_etf | 11.79 | +5.17% | 22196 | 41142.311 | 53.95% | ★★★★★ | 2.3917% |
+| 上市 | 2 | 2618 | 長榮航 | ordinary_stock | 48.6 | +9.95% | 10433 | 88578.906 | 11.78% | ★★★ | 0.1932% |
+| 上市 | 3 | 2027 | 大成鋼 | ordinary_stock | 48.15 | +7.60% | 6676 | 42731.769 | 15.62% | ★★★★ | 0.2583% |
+| 上市 | 4 | 00631L | 元大台灣50正2 | leveraged_etf | 27 | +20.00% | 6442 | 109645.853 | 5.88% | ★★ | 0.0594% |
+| 上市 | 5 | 00680L | 元大美債20正2 | leveraged_etf | 6.4 | +1.43% | 5974 | 21751.135 | 27.47% | ★★★★★ | 0.4947% |
+| 上市 | 6 | 2886 | 兆豐金 | ordinary_stock | 55 | +10.00% | 5493 | 39637.358 | 13.86% | ★★★ | 0.0370% |
+| 上市 | 7 | 1802 | 台玻 | ordinary_stock | 63.9 | +9.98% | 4866 | 7508.226 | 64.81% | ★★★★★ | 0.1673% |
+| 上市 | 8 | 9904 | 寶成 | ordinary_stock | 25.5 | +6.47% | 4785 | 23553.106 | 20.32% | ★★★★★ | 0.1624% |
+| 上市 | 9 | 2409 | 友達 | ordinary_stock | 26.5 | +9.96% | 3994 | 22929.268 | 17.42% | ★★★★ | 0.0529% |
+| 上市 | 10 | 0050 | 元大台灣50 | etf | 95.7 | +10.00% | 3285 | 55100.953 | 5.96% | ★★ | 0.0125% |
+| 上市 | 11 | 2890 | 永豐金 | ordinary_stock | 40.35 | +9.95% | 3140 | 38633.854 | 8.13% | ★★ | 0.0212% |
+| 上市 | 12 | 2317 | 鴻海 | ordinary_stock | 226.5 | +9.95% | 3132 | 19434.213 | 16.12% | ★★★★ | 0.0223% |
+| 上市 | 13 | 5871 | 中租-KY | ordinary_stock | 103.5 | +7.14% | 2995 | 20463.375 | 14.64% | ★★★ | 0.1716% |
+| 上市 | 14 | 6770 | 力積電 | ordinary_stock | 53.3 | +9.90% | 2807 | 6980.374 | 40.21% | ★★★★★ | 0.0596% |
+| 上市 | 15 | 1229 | 聯華 | ordinary_stock | 41.05 | +6.49% | 2595 | 5693.191 | 45.58% | ★★★★★ | 0.1417% |
 
 ### 上市證據與分母稽核
 
 | 代碼 | 證據狀態 | 排行日期 | 行情日期 | 分母日期 | 排行來源 | 行情來源 | 分母來源 |
 |---|---|---|---|---|---|---|---|
-| 00632R | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261123&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap47_L |
-| 2303 | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261123&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap03_L |
-| 00953B | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261123&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap47_L |
-| 00712 | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261123&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap47_L |
-| 6770 | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261123&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap03_L |
-| 00664R | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261123&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap47_L |
-| 00673R | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261123&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap47_L |
-| 2890 | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261123&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap03_L |
-| 00988A | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261123&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap47_L |
-| 00671R | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261123&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap47_L |
-| 1303 | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261123&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap03_L |
-| 00680L | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261123&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap47_L |
-| 2027 | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261123&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap03_L |
-| 00940 | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261123&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap47_L |
-| 00882 | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261123&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap47_L |
+| 00673R | 部分或代理 | 2026-11-24 | 2026-11-24 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261124&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap47_L |
+| 2618 | 部分或代理 | 2026-11-24 | 2026-11-24 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261124&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap03_L |
+| 2027 | 部分或代理 | 2026-11-24 | 2026-11-24 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261124&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap03_L |
+| 00631L | 部分或代理 | 2026-11-24 | 2026-11-24 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261124&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap47_L |
+| 00680L | 部分或代理 | 2026-11-24 | 2026-11-24 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261124&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap47_L |
+| 2886 | 部分或代理 | 2026-11-24 | 2026-11-24 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261124&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap03_L |
+| 1802 | 部分或代理 | 2026-11-24 | 2026-11-24 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261124&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap03_L |
+| 9904 | 部分或代理 | 2026-11-24 | 2026-11-24 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261124&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap03_L |
+| 2409 | 部分或代理 | 2026-11-24 | 2026-11-24 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261124&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap03_L |
+| 0050 | 部分或代理 | 2026-11-24 | 2026-11-24 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261124&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap47_L |
+| 2890 | 部分或代理 | 2026-11-24 | 2026-11-24 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261124&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap03_L |
+| 2317 | 部分或代理 | 2026-11-24 | 2026-11-24 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261124&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap03_L |
+| 5871 | 部分或代理 | 2026-11-24 | 2026-11-24 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261124&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap03_L |
+| 6770 | 部分或代理 | 2026-11-24 | 2026-11-24 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261124&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap03_L |
+| 1229 | 部分或代理 | 2026-11-24 | 2026-11-24 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=1 | https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20261124&type=ALLBUT0999&response=json | https://openapi.twse.com.tw/v1/opendata/t187ap03_L |
 
 ## 上櫃主力買超前15名
 
 | 市場 | 名次 | 代碼 | 名稱 | 證券類型 | 收盤價 | 今日收盤漲跌幅 | 主力買超量（張） | 成交量（張） | 買超量 ÷ 成交量百分比 | 星等 | 股本占比 |
 |---|---:|---|---|---|---:|---:|---:|---:|---:|:---:|---:|
-| 上櫃 | 1 | 00937B | 群益ESG投等債20+ | bond_etf | 14.2 | +0.21% | 43199 | 68499.268 | 63.06% | ★★★★★ | 0.2662% |
-| 上櫃 | 2 | 00679B | 元大美債20年 | bond_etf | 26.33 | +0.69% | 24572 | 43954.542 | 55.90% | ★★★★★ | 0.4218% |
-| 上櫃 | 3 | 00687B | 國泰20年美債 | bond_etf | 27.66 | +0.69% | 15048 | 30564.023 | 49.23% | ★★★★★ | 0.3891% |
-| 上櫃 | 4 | 00933B | 國泰10Y+金融債 | bond_etf | 15.69 | +0.45% | 6941 | 18767.761 | 36.98% | ★★★★★ | 0.1028% |
-| 上櫃 | 5 | 00751B | 元大AAA至A公司債 | bond_etf | 30.57 | +0.36% | 5685 | 12617.815 | 45.06% | ★★★★★ | 0.1122% |
-| 上櫃 | 6 | 00720B | 元大投資級公司債 | bond_etf | 31.94 | +0.25% | 5475 | 10241.544 | 53.46% | ★★★★★ | 0.1358% |
-| 上櫃 | 7 | 00795B | 中信美國公債20年 | bond_etf | 26.44 | +0.53% | 3593 | 8276.729 | 43.41% | ★★★★★ | 0.2479% |
-| 上櫃 | 8 | 00981B | 第一金優選非投債 | bond_etf | 8.91 | +0.00% | 3165 | 23417.702 | 13.52% | ★★★ | 0.2113% |
-| 上櫃 | 9 | 00948B | 中信優息投資級債 | bond_etf | 9.16 | +0.33% | 2652 | 8461.022 | 31.34% | ★★★★★ | 0.0615% |
-| 上櫃 | 10 | 00772B | 中信高評級公司債 | bond_etf | 32.8 | +0.61% | 2444 | 5569.825 | 43.88% | ★★★★★ | 0.0735% |
-| 上櫃 | 11 | 00725B | 國泰投資級公司債 | bond_etf | 33.89 | +0.27% | 2221 | 49459.357 | 4.49% | ★ | 0.0588% |
-| 上櫃 | 12 | 00931B | 統一美債20年 | bond_etf | 13.32 | +0.68% | 1676 | 4744.516 | 35.32% | ★★★★★ | 0.0767% |
-| 上櫃 | 13 | 5483 | 中美晶 | ordinary_stock | 128.5 | +9.83% | 1552 | 10932.493 | 14.20% | ★★★ | 0.2420% |
-| 上櫃 | 14 | 00950B | 凱基A級公司債 | bond_etf | 13.81 | +0.51% | 1369 | 4665.522 | 29.34% | ★★★★★ | 0.0330% |
-| 上櫃 | 15 | 00719B | 元大美債1-3 | bond_etf | 32.02 | +0.09% | 1329 | 4204.73 | 31.61% | ★★★★★ | 0.4452% |
+| 上櫃 | 1 | 00937B | 群益ESG投等債20+ | bond_etf | 14.3 | +0.70% | 22691 | 54150.7 | 41.90% | ★★★★★ | 0.1398% |
+| 上櫃 | 2 | 00679B | 元大美債20年 | bond_etf | 26.47 | +0.53% | 15532 | 33495.078 | 46.37% | ★★★★★ | 0.2685% |
+| 上櫃 | 3 | 00687B | 國泰20年美債 | bond_etf | 27.83 | +0.61% | 10510 | 31902.24 | 32.94% | ★★★★★ | 0.2742% |
+| 上櫃 | 4 | 00933B | 國泰10Y+金融債 | bond_etf | 15.74 | +0.32% | 2489 | 12808.979 | 19.43% | ★★★★ | 0.0369% |
+| 上櫃 | 5 | 00720B | 元大投資級公司債 | bond_etf | 32.11 | +0.53% | 2184 | 6571.9 | 33.23% | ★★★★★ | 0.0543% |
+| 上櫃 | 6 | 00795B | 中信美國公債20年 | bond_etf | 26.58 | +0.53% | 1971 | 7469.118 | 26.39% | ★★★★★ | 0.1365% |
+| 上櫃 | 7 | 00751B | 元大AAA至A公司債 | bond_etf | 30.74 | +0.56% | 1857 | 5586.267 | 33.24% | ★★★★★ | 0.0367% |
+| 上櫃 | 8 | 00931B | 統一美債20年 | bond_etf | 13.4 | +0.60% | 1576 | 6638.645 | 23.74% | ★★★★★ | 0.0722% |
+| 上櫃 | 9 | 1815 | 富喬 | ordinary_stock | 112.5 | +9.76% | 1276 | 2929.369 | 43.56% | ★★★★★ | 0.2076% |
+| 上櫃 | 10 | 00948B | 中信優息投資級債 | bond_etf | 9.2 | +0.44% | 1209 | 5889.038 | 20.53% | ★★★★★ | 0.0281% |
+| 上櫃 | 11 | 00725B | 國泰投資級公司債 | bond_etf | 34.08 | +0.56% | 997 | 4791.676 | 20.81% | ★★★★★ | 0.0264% |
+| 上櫃 | 12 | 00981B | 第一金優選非投債 | bond_etf | 8.96 | +0.56% | 932 | 13176.909 | 7.07% | ★★ | 0.0623% |
+| 上櫃 | 13 | 5457 | 宣德 | ordinary_stock | 28.7 | +9.96% | 570 | 1192.302 | 47.81% | ★★★★★ | 0.2905% |
+| 上櫃 | 14 | 00772B | 中信高評級公司債 | bond_etf | 32.93 | +0.40% | 555 | 2494.292 | 22.25% | ★★★★★ | 0.0167% |
+| 上櫃 | 15 | 1785 | 光洋科 | ordinary_stock | 82.6 | +9.99% | 456 | 1404.308 | 32.47% | ★★★★★ | 0.0765% |
 
 ### 上櫃證據與分母稽核
 
 | 代碼 | 證據狀態 | 排行日期 | 行情日期 | 分母日期 | 排行來源 | 行情來源 | 分母來源 |
 |---|---|---|---|---|---|---|---|
-| 00937B | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
-| 00679B | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
-| 00687B | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
-| 00933B | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
-| 00751B | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
-| 00720B | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
-| 00795B | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
-| 00981B | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
-| 00948B | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
-| 00772B | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
-| 00725B | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
-| 00931B | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
-| 5483 | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
-| 00950B | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
-| 00719B | 已確認 | 2026-11-23 | 2026-11-23 | 2026-11-23 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
+| 00937B | 已確認 | 2026-11-24 | 2026-11-24 | 2026-11-24 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
+| 00679B | 已確認 | 2026-11-24 | 2026-11-24 | 2026-11-24 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
+| 00687B | 已確認 | 2026-11-24 | 2026-11-24 | 2026-11-24 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
+| 00933B | 已確認 | 2026-11-24 | 2026-11-24 | 2026-11-24 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
+| 00720B | 已確認 | 2026-11-24 | 2026-11-24 | 2026-11-24 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
+| 00795B | 已確認 | 2026-11-24 | 2026-11-24 | 2026-11-24 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
+| 00751B | 已確認 | 2026-11-24 | 2026-11-24 | 2026-11-24 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
+| 00931B | 已確認 | 2026-11-24 | 2026-11-24 | 2026-11-24 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
+| 1815 | 已確認 | 2026-11-24 | 2026-11-24 | 2026-11-24 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
+| 00948B | 已確認 | 2026-11-24 | 2026-11-24 | 2026-11-24 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
+| 00725B | 已確認 | 2026-11-24 | 2026-11-24 | 2026-11-24 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
+| 00981B | 已確認 | 2026-11-24 | 2026-11-24 | 2026-11-24 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
+| 5457 | 已確認 | 2026-11-24 | 2026-11-24 | 2026-11-24 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
+| 00772B | 已確認 | 2026-11-24 | 2026-11-24 | 2026-11-24 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
+| 1785 | 已確認 | 2026-11-24 | 2026-11-24 | 2026-11-24 | https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=1&C=1 | https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes | TPEx Capitals |
 
 ## 覆蓋檢查
 
